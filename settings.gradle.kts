@@ -5,6 +5,6 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "ir-template"
+rootProject.name = "boot-ir"
 include(":app")
 includeBuild("plugin-build")
