@@ -17,7 +17,8 @@ class TemplateCommandLineProcessor : CommandLineProcessor {
         val ARG_FILE = CompilerConfigurationKey<String>(OPTION_FILE)
     }
 
-    override val pluginId: String = "template-ir-compiler"
+    override val pluginId: String = BuildConfig.KOTLIN_PLUGIN_ID
+//    override val pluginId: String = "template-ir-compiler"
 
     override val pluginOptions: Collection<CliOption> = listOf(
         CliOption(

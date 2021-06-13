@@ -1,8 +1,9 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    id("com.boot.gradle.template-gradle-plugin")
-    id("com.boot.gradle.template-ir-plugin")
+//    id("com.boot.gradle.template-gradle-plugin")
+//    id("com.boot.gradle.template-ir-plugin")
+    id("com.boot.gradle.template.ir-template-compiler")
 }
 
 android {

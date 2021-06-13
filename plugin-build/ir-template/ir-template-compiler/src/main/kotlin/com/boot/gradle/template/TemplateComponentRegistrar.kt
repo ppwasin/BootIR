@@ -24,6 +24,7 @@ class TemplateComponentRegistrar(
         project: MockProject,
         configuration: CompilerConfiguration
     ) {
+        println("registerProjectComponents")
         val messageCollector = configuration.get(CLIConfigurationKeys.MESSAGE_COLLECTOR_KEY, MessageCollector.NONE)
         val string = configuration.get(TemplateCommandLineProcessor.ARG_STRING, defaultString)
         val file = configuration.get(TemplateCommandLineProcessor.ARG_FILE, defaultFile)

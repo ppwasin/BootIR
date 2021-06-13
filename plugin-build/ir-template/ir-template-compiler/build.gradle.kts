@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm")
     kotlin("kapt")
+    id("com.github.gmazzo.buildconfig")
 }
 
 repositories {
@@ -21,3 +22,9 @@ dependencies {
 //tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 //    kotlinOptions.jvmTarget = "1.8"
 //}
+
+buildConfig {
+    packageName(group.toString())
+    val id = parent?.extra?.get("kotlin_plugin_id").also { println("id: $it") }
+    buildConfigField("String", "KOTLIN_PLUGIN_ID", "\"$id\"")
+}
