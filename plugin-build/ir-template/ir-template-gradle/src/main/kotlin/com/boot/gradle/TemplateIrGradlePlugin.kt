@@ -14,7 +14,7 @@ class TemplateIrGradlePlugin : KotlinCompilerPluginSupportPlugin {
     }
     override fun isApplicable(kotlinCompilation: KotlinCompilation<*>): Boolean = true
 
-    override fun getCompilerPluginId(): String = "com.boot.gradle.template-ir-plugin"
+    override fun getCompilerPluginId(): String = "template-ir-plugin"
 
     override fun applyToCompilation(kotlinCompilation: KotlinCompilation<*>): Provider<List<SubpluginOption>> {
         val project = kotlinCompilation.target.project
@@ -33,7 +33,7 @@ class TemplateIrGradlePlugin : KotlinCompilerPluginSupportPlugin {
 
         override fun getPluginArtifact(): SubpluginArtifact = SubpluginArtifact(
             groupId = "com.boot.ir",
-            artifactId = "template-compiler-plugin",
+            artifactId = "template-ir-plugin",
             version = "1.0.0"
         )
 
