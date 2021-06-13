@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("kotlin-android")
     id("com.boot.gradle.template-gradle-plugin")
+    id("com.boot.gradle.template-ir-plugin")
 }
 
 android {
@@ -36,6 +37,10 @@ android {
     buildFeatures {
         viewBinding = true
     }
+}
+
+templateir {
+    stringProperty.set("Test value")
 }
 
 dependencies {

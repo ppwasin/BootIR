@@ -3,8 +3,8 @@ plugins {
 }
 
 allprojects {
-    group = "com.boot.gradle"
-    version = "1.0.0"
+//    group = "com.boot.gradle"
+//    version = "1.0.0"
 
     repositories {
         google()
