@@ -1,6 +1,6 @@
 buildscript {
     //    extra["kotlin_plugin_id"] = "com.bnorm.template.kotlin-ir-plugin"
-    extra["kotlin_plugin_id"] = "com.boot.gradle.template.ir-template-compiler"
+    extra["kotlin_plugin_id"] = "com.boot.gradle.template.ir-template"
 }
 plugins {
     id("com.github.gmazzo.buildconfig") version "3.0.0" apply false

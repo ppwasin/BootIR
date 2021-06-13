@@ -1,6 +1,7 @@
 package com.boot.ir_template
 
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -33,7 +34,8 @@ class MainActivity : AppCompatActivity() {
                 .setAction("Action", null).show()
         }
 
-        debug()
+        val result = greet()
+        Log.d(javaClass.simpleName, result)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -59,6 +61,8 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-annotation class DebugLog
-fun debug(name: String = "World") =
-    "Hello, ${'$'}name!"
+@DebugLog
+fun greet(greeting: String = "Hello", name: String = "World"): String {
+    Thread.sleep(15) // simulate work
+    return "$greeting, $name!"
+}

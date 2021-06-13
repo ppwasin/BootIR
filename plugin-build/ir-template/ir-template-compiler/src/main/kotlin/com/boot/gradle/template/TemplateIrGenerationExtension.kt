@@ -6,6 +6,7 @@ import org.jetbrains.kotlin.backend.common.extensions.IrPluginContext
 import org.jetbrains.kotlin.cli.common.messages.CompilerMessageSeverity
 import org.jetbrains.kotlin.cli.common.messages.MessageCollector
 import org.jetbrains.kotlin.ir.declarations.IrModuleFragment
+import org.jetbrains.kotlin.ir.util.dump
 import org.jetbrains.kotlin.name.FqName
 
 class TemplateIrGenerationExtension(
@@ -17,7 +18,6 @@ class TemplateIrGenerationExtension(
     override fun generate(moduleFragment: IrModuleFragment, pluginContext: IrPluginContext) {
         messageCollector.report(CompilerMessageSeverity.INFO, "Argument 'string' = $string")
         messageCollector.report(CompilerMessageSeverity.INFO, "Argument 'file' = $file")
-//        println(moduleFragment.dump())
 //        buildHelloWorld(pluginContext)
 
 //        moduleFragment.accept(RecursiveVisitor(), null)
@@ -27,7 +27,7 @@ class TemplateIrGenerationExtension(
 
         val typeAnyNullable = pluginContext.irBuiltIns.anyNType
 
-        val debugLogAnnotation = pluginContext.referenceClass(FqName("DebugLog"))!!
+        val debugLogAnnotation = pluginContext.referenceClass(FqName("com.boot.ir_template.DebugLog"))!!
         val funPrintln = pluginContext.referenceFunctions(FqName("kotlin.io.println"))
             .single {
                 val parameters = it.owner.valueParameters
