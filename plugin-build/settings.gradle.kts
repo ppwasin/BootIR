@@ -5,7 +5,7 @@ pluginManagement {
     }
 }
 
-rootProject.name = ("com.boot.gradle")
+rootProject.name = "plugin-build"
 
 include(":plugin-template")
 include(":ir-template:ir-template-compiler")
