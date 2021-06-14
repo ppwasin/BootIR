@@ -6,7 +6,7 @@ plugins {
     id("com.github.gmazzo.buildconfig") version "3.0.0" apply false
 }
 
-allprojects {
+subprojects {
     group = "com.boot.gradle.template"
     version = "1.0.0"
 
