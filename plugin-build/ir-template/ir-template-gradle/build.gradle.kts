@@ -44,4 +44,9 @@ buildConfig {
     buildConfigField("String", "KOTLIN_PLUGIN_GROUP", "\"$group\"")
     buildConfigField("String", "KOTLIN_PLUGIN_NAME", "\"$name\"")
     buildConfigField("String", "KOTLIN_PLUGIN_VERSION", "\"$version\"")
+
+    val annotationProject = project(":ir-template:ir-template-annotation")
+    buildConfigField("String", "ANNOTATION_LIBRARY_GROUP", "\"${annotationProject.group}\"")
+    buildConfigField("String", "ANNOTATION_LIBRARY_NAME", "\"${annotationProject.name}\"")
+    buildConfigField("String", "ANNOTATION_LIBRARY_VERSION", "\"${annotationProject.version}\"")
 }

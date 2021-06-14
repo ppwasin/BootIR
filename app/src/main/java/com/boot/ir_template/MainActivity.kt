@@ -10,6 +10,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import com.boot.gradle.template.DebugLog
 import com.boot.ir_template.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

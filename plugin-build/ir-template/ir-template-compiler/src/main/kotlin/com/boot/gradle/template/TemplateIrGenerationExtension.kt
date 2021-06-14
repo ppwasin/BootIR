@@ -27,7 +27,7 @@ class TemplateIrGenerationExtension(
 
         val typeAnyNullable = pluginContext.irBuiltIns.anyNType
 
-        val debugLogAnnotation = pluginContext.referenceClass(FqName("com.boot.ir_template.DebugLog"))!!
+        val debugLogAnnotation = pluginContext.referenceClass(FqName("com.boot.gradle.template.DebugLog"))!!
         val funPrintln = pluginContext.referenceFunctions(FqName("kotlin.io.println"))
             .single {
                 val parameters = it.owner.valueParameters

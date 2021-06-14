@@ -21,8 +21,13 @@ class TemplateIrGradlePlugin : KotlinCompilerPluginSupportPlugin {
 
     override fun applyToCompilation(kotlinCompilation: KotlinCompilation<*>): Provider<List<SubpluginOption>> {
         val project = kotlinCompilation.target.project
+        kotlinCompilation.dependencies {
+            implementation("${BuildConfig.ANNOTATION_LIBRARY_GROUP}:${BuildConfig.ANNOTATION_LIBRARY_NAME}:${BuildConfig.ANNOTATION_LIBRARY_VERSION}")
+        }
+
         val extension = project.extensions.getByType(TemplateIrGradlePluginExtension::class.java)
         val string = extension.stringProperty.get()
+
         return project.provider {
             listOf(
                 SubpluginOption(key = "string", value = string)
