@@ -1,11 +1,15 @@
 package com.boot.gradle.template
 
+import com.boot.gradle.template.utils.DebugLogUtils
 import com.tschuchort.compiletesting.KotlinCompilation
 import com.tschuchort.compiletesting.SourceFile
 import org.jetbrains.kotlin.compiler.plugin.ComponentRegistrar
 import org.junit.Assert.*
 import org.junit.Test
 
+/*
+* TODO: Add actual test
+* */
 class IrPluginTest {
   @Test
   fun `IR plugin success`() {
@@ -16,10 +20,12 @@ class IrPluginTest {
                     name = "main.kt",
                     contents =
                         """
-        annotation class DebugLog
+        import ${DebugLogUtils.getDebugLogReference()}
+        
         fun main() {
             println(debug())
         }
+        @DebugLog
         fun debug(name: String = "World") = 
             "Hello, ${'$'}name!"
     """.trimIndent()))
@@ -34,7 +40,7 @@ class IrPluginTest {
                 SourceFile.kotlin(
                     "main.kt",
                     """
-      annotation class DebugLog
+      import ${DebugLogUtils.getDebugLogReference()}
       
       fun main() {
         println(greet())

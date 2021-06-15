@@ -9,6 +9,7 @@ repositories {
 }
 
 dependencies {
+    implementation(project(":ir-template:ir-template-annotation"))
     compileOnly("org.jetbrains.kotlin:kotlin-compiler-embeddable")
 
     kapt("com.google.auto.service:auto-service:1.0-rc7")

@@ -35,18 +35,18 @@ buildConfig {
     packageName(group.toString())
 
     val project = project(":ir-template:ir-template-compiler") //kotlin-ir-plugin
-    val id = parent?.extra?.get("kotlin_plugin_id").also { println("id: $it") }
-    val group = project.group.also { println("group: $it") }
-    val name = project.name.also { println("name: $it") }
-    val version = project.version.also { println("version: $it") }
-
-    buildConfigField("String", "KOTLIN_PLUGIN_ID", "\"$id\"")
-    buildConfigField("String", "KOTLIN_PLUGIN_GROUP", "\"$group\"")
-    buildConfigField("String", "KOTLIN_PLUGIN_NAME", "\"$name\"")
-    buildConfigField("String", "KOTLIN_PLUGIN_VERSION", "\"$version\"")
+    assignString("KOTLIN_PLUGIN_ID", parent?.extra?.get("kotlin_plugin_id"))
+    assignString("KOTLIN_PLUGIN_GROUP", project.group)
+    assignString("KOTLIN_PLUGIN_NAME", project.name)
+    assignString("KOTLIN_PLUGIN_VERSION", project.version)
 
     val annotationProject = project(":ir-template:ir-template-annotation")
-    buildConfigField("String", "ANNOTATION_LIBRARY_GROUP", "\"${annotationProject.group}\"")
-    buildConfigField("String", "ANNOTATION_LIBRARY_NAME", "\"${annotationProject.name}\"")
-    buildConfigField("String", "ANNOTATION_LIBRARY_VERSION", "\"${annotationProject.version}\"")
+    assignString("ANNOTATION_LIBRARY_GROUP", annotationProject.group)
+    assignString("ANNOTATION_LIBRARY_NAME", annotationProject.name)
+    assignString("ANNOTATION_LIBRARY_VERSION", annotationProject.version)
+}
+
+fun com.github.gmazzo.gradle.plugins.BuildConfigExtension.assignString(key: String, value: Any?) {
+    println("$key: $value")
+    buildConfigField("String", key, "\"${value}\"")
 }
