@@ -15,6 +15,10 @@ Project setup
   - plugin-template: gradle plugin example
   - ir-template: kotlin ir example
 
+## app
+- show example usage of plugins both (IR, gradle plugin)
+- see app/build.gradle.kts: id("com.boot.gradle.template.ir-template")
+
 ## plugin-build
 - settings.gradle.kts: define its submodules
 - build.gradle.kts: define version of infrasturcture libs (such as kotlin). So the submodule doesn't need to define version
@@ -23,16 +27,11 @@ Project setup
 - use plugin `java-gradle-plugin`
 - define gradle plugin id, implementationsClass with gradlePlugin
 
-## ir-template
+## plugin-build/ir-template
 - use subproject to identify group, version [ir-template/build.gradle.kts](https://github.com/wasinpp/BootIR/blob/main/plugin-build/ir-template/build.gradle.kts)
 - ir-template-gradle: expose backend IR compiler as the gradle plugin
 - ir-template-compiler: actual backend IR compiler
 - ir-template-annotation: @DebugLog annotation, this may need or not needed depend on the requirements of IR compiler
-
-
-## app
-- show example usage of plugins both (IR, gradle plugin)
-- see app/build.gradle.kts: id("com.boot.gradle.template.ir-template")
 
 # TODO
 - Finish ir-template-gradle-native: IR on native platform
