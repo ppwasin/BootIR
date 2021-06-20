@@ -9,30 +9,22 @@ import org.jetbrains.kotlin.config.CompilerConfigurationKey
 
 @AutoService(CommandLineProcessor::class)
 class TemplateCommandLineProcessor : CommandLineProcessor {
-    companion object {
-        private const val OPTION_STRING = "string"
-        private const val OPTION_FILE = "file"
 
-        val ARG_STRING = CompilerConfigurationKey<String>(OPTION_STRING)
-        val ARG_FILE = CompilerConfigurationKey<String>(OPTION_FILE)
+    companion object {
+        //Update string value "enable" here will need to update TemplateIrGradlePlugin/SubpluginOption too
+        private const val OPTION_ENABLE = "enable"
+        val ARG_ENABLE = CompilerConfigurationKey<Boolean>(OPTION_ENABLE)
     }
 
     override val pluginId: String = BuildConfig.KOTLIN_PLUGIN_ID
-//    override val pluginId: String = "template-ir-compiler"
 
     override val pluginOptions: Collection<CliOption> = listOf(
         CliOption(
-            optionName = OPTION_STRING,
-            valueDescription = "string",
-            description = "sample string argument",
-            required = false,
-        ),
-        CliOption(
-            optionName = OPTION_FILE,
-            valueDescription = "file",
-            description = "sample file argument",
-            required = false,
-        ),
+            optionName = OPTION_ENABLE,
+            valueDescription = "<true | false>",
+            description = "",
+            required = true,
+        )
     )
 
     override fun processOption(
@@ -41,8 +33,7 @@ class TemplateCommandLineProcessor : CommandLineProcessor {
         configuration: CompilerConfiguration
     ) {
         return when (option.optionName) {
-            OPTION_STRING -> configuration.put(ARG_STRING, value)
-            OPTION_FILE -> configuration.put(ARG_FILE, value)
+            OPTION_ENABLE -> configuration.put(ARG_ENABLE, value.toBoolean())
             else -> throw IllegalArgumentException("Unexpected config option ${option.optionName}")
         }
     }

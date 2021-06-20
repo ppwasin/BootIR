@@ -60,7 +60,8 @@ fun fetchMethodByPrefix(classText: String, methodSignaturePrefix: String): Strin
 
 fun compile(
     sourceFiles: List<SourceFile>,
-    plugin: ComponentRegistrar
+    plugin: ComponentRegistrar,
+    processorBuilder: List<CommandLineProcessorBuilder> = emptyList()
 ): KotlinCompilation.Result {
     return KotlinCompilation().apply {
         sources = sourceFiles
@@ -68,14 +69,12 @@ fun compile(
         compilerPlugins = listOf(plugin)
         inheritClassPath = true
         verbose = false
-    }.compile()
-}
 
-fun compile(
-    sourceFile: SourceFile,
-    plugin: ComponentRegistrar
-): KotlinCompilation.Result {
-    return compile(listOf(sourceFile), plugin)
+        val processors = processorBuilder.map { it.processor }
+        val options = processorBuilder.flatMap { it.options }
+        commandLineProcessors = processors
+        pluginOptions = options
+    }.compile()
 }
 
 fun invokeMain(result: KotlinCompilation.Result, className: String): String {

@@ -7,30 +7,27 @@ import org.jetbrains.kotlin.cli.common.messages.MessageCollector
 import org.jetbrains.kotlin.com.intellij.mock.MockProject
 import org.jetbrains.kotlin.compiler.plugin.ComponentRegistrar
 import org.jetbrains.kotlin.config.CompilerConfiguration
+import org.jetbrains.kotlin.config.JVMConfigurationKeys
 
 @AutoService(ComponentRegistrar::class)
-class TemplateComponentRegistrar(
-    private val isEnable: Boolean
-) : ComponentRegistrar {
+class TemplateComponentRegistrar: ComponentRegistrar {
 
-    @Suppress("unused") // Used by service loader
-    constructor() : this(
-        isEnable = false
-    )
+//    @Suppress("unused") // Used by service loader
+//    constructor() : this(
+//        isEnable = true
+//    )
 
     override fun registerProjectComponents(
         project: MockProject,
         configuration: CompilerConfiguration
     ) {
-        println("registerProjectComponents")
         val messageCollector = configuration.get(CLIConfigurationKeys.MESSAGE_COLLECTOR_KEY, MessageCollector.NONE)
-//        val string = configuration.get(TemplateCommandLineProcessor.ARG_STRING, defaultString)
-//        val file = configuration.get(TemplateCommandLineProcessor.ARG_FILE, defaultFile)
-//        IrGenerationExtension.registerExtension(project, TemplateIrGenerationExtension(messageCollector, string, file))
-        if(isEnable) {
+        val isPluginEnable = configuration[TemplateCommandLineProcessor.ARG_ENABLE] ?: false
+        val isIREnable =  configuration.getBoolean(JVMConfigurationKeys.IR)
+        if(isPluginEnable && isIREnable) {
             IrGenerationExtension.registerExtension(
                 project,
-                TemplateIrGenerationExtension(messageCollector, "string", "file")
+                TemplateIrGenerationExtension(messageCollector)
             )
         }
     }

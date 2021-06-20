@@ -26,22 +26,16 @@ class TemplateIrGradlePlugin : KotlinCompilerPluginSupportPlugin {
         }
 
         val extension = project.extensions.getByType(TemplateIrGradlePluginExtension::class.java)
-        val string = extension.stringProperty.get()
+        val enabled = extension.isEnable.get()
 
         return project.provider {
             listOf(
-                SubpluginOption(key = "string", value = string)
-                //                SubpluginOption(key = "file", value = extension.fileProperty.get().asFile.path)
+                SubpluginOption(key = "enable", value = enabled.toString())
             )
         }
     }
 
     override fun getPluginArtifact(): SubpluginArtifact {
-        //            return SubpluginArtifact(
-        //                groupId = "com.boot.gradle",
-        //                artifactId = "ir-template-compiler",
-        //                version = "1.0.0"
-        //            )
         return SubpluginArtifact(
             groupId = BuildConfig.KOTLIN_PLUGIN_GROUP,
             artifactId = BuildConfig.KOTLIN_PLUGIN_NAME,

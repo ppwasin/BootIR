@@ -30,7 +30,11 @@ fun doSomething() {
 
     @Test
     fun `IR plugin enabled`() {
-        val result = compile(sourceFile = main, TemplateComponentRegistrar(true))
+        val result = compile(
+            sourceFiles = listOf(main),
+            plugin = TemplateComponentRegistrar(),
+            processorBuilder = listOf(DebugLogTestUtils.createEnableOptions(true))
+        )
         assertEquals(KotlinCompilation.ExitCode.OK, result.exitCode)
 
         val javaCode = result.javaCode("MainKt")
@@ -93,12 +97,17 @@ fun doSomething() {
 
     @Test
     fun `IR plugin disabled`() {
-        val result = compile(sourceFile = main, TemplateComponentRegistrar(false))
+        val result = compile(
+            sourceFiles = listOf(main),
+            plugin = TemplateComponentRegistrar(),
+            processorBuilder = listOf(DebugLogTestUtils.createEnableOptions(false))
+        )
         assertEquals(KotlinCompilation.ExitCode.OK, result.exitCode)
 
         val javaCode = result.javaCode("MainKt")
 
-        assertFunction(javaCode, "public static final String greet",
+        assertFunction(
+            javaCode, "public static final String greet",
             """
       public static final String greet(@NotNull final String greeting, @NotNull final String name) {
           Intrinsics.checkNotNullParameter(greeting, "greeting");
@@ -106,14 +115,17 @@ fun doSomething() {
           Thread.sleep(15L);
           return greeting + ", " + name + '!';
       }
-      """.trimIndent())
+      """.trimIndent()
+        )
 
-        assertFunction(javaCode, "public static final void doSomething",
+        assertFunction(
+            javaCode, "public static final void doSomething",
             """
       public static final void doSomething() {
           Thread.sleep(15L);
       }
-      """.trimIndent())
+      """.trimIndent()
+        )
 
         val out = invokeMain(result, "MainKt").trim().split("""\r?\n+""".toRegex())
         assertTrue(out.size == 2)

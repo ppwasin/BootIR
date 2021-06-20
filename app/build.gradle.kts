@@ -41,7 +41,7 @@ android {
 }
 
 templateir {
-    stringProperty.set("Test value")
+    isEnable.set(true)
 }
 
 dependencies {
