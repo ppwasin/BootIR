@@ -1,8 +1,8 @@
 # BootIR
 Boot strap for Kotlin Backend IR compiler.
-IR compiler, "DebugLog", follow step in 
+IR compiler name "DebugLog", follow steps in 
 - [IR compiler](https://www.notion.so/Tutorial-798bf5e9ff7440e2b0632d1c40d4e825#bd77e4d644974aa7a02398fcfff4e12e)
-- [Gradle plugin composite module] https://www.notion.so/Gradle-plugin-f13f98de32a74e64b5fb55e62908dd55#f0395554ecf9474492cb376804648b08
+- [Gradle plugin composite module](https://www.notion.so/Gradle-plugin-f13f98de32a74e64b5fb55e62908dd55#f0395554ecf9474492cb376804648b08)
 
 Project setup
 - Composite module
